@@ -52,9 +52,6 @@ export default function HomePage() {
         lg:bg-cover
         
       "
-      style={{
-        backgroundPosition: window.innerWidth >= 1024 ? "left 50% top 0%" : undefined
-      }}
     >
   {/* Overlay */}
   <div className="absolute inset-0 bg-black/70" />  
