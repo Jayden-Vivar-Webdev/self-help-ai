@@ -116,7 +116,7 @@ export default function Footer(){
                 {navigation.social.map((item) => (
                   <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-300">
                     <span className="sr-only">{item.name}</span>
-                    <item.icon aria-hidden="true" className="size-6" />
+                    <item.icon aria-hidden="true"/>
                   </a>
                 ))}
               </div>
