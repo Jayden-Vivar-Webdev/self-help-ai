@@ -283,7 +283,7 @@ export default function MonthlyCalendar() {
                       : undefined
                   }
                 >
-                  {day.date.split('-').pop().replace(/^0/, '')}
+                  {day.date?.split('-').pop()?.replace(/^0/, '') ?? ''}
                 </time>
                 {day.events.length > 0 && (
                   <ol className="mt-2">
@@ -332,7 +332,8 @@ export default function MonthlyCalendar() {
                     'ml-auto',
                   )}
                 >
-                  {day.date.split('-').pop().replace(/^0/, '')}
+                  {day.date?.split('-').pop()?.replace(/^0/, '') ?? ''}
+
                 </time>
                 <span className="sr-only">{day.events.length} events</span>
                 {day.events.length > 0 && (
@@ -347,7 +348,7 @@ export default function MonthlyCalendar() {
           </div>
         </div>
       </div>
-      {selectedDay?.events.length > 0 && (
+      {selectedDay && selectedDay.events && selectedDay.events.length > 0 &&(
         <div className="px-4 py-10 sm:px-6 lg:hidden">
           <ol className="divide-y divide-gray-100 overflow-hidden rounded-lg bg-white text-sm shadow-sm ring-1 ring-black/5">
             {selectedDay.events.map((event) => (
