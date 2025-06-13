@@ -1,103 +1,115 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import BentoGrid from "./components/bento/bento"
+import Features from "./components/content/features"
+import FaqSection from "./components/faq/faq"
+import Stats from "./components/stats/stats"
+
+const statsData = [
+  { id: '1', name: 'Users', value: '1000' },
+  { id: '2', name: 'Goals Achieved', value: '250' },
+  { id: '3', name: 'Sessions Completed', value: '5000' },
+]
+
+const faqs = [
+  {
+    id: '1',
+    question: 'What is a Nexian?',
+    answer: 'A Nexian is your personal AI companion designed to provide emotional support, intelligent conversation, and meaningful engagement tailored to your needs and personality.',
+  },
+  {
+    id: '2',
+    question: 'Can I talk to my Nexian any time?',
+    answer: 'Yes! Nexians are always available, 24/7, so you can talk whenever you feel like chatting, venting, or just need a bit of support.',
+  },
+  {
+    id: '3',
+    question: 'Is my conversation with a Nexian private?',
+    answer: 'Absolutely. Your conversations are confidential and encrypted to ensure your privacy and data security at all times.',
+  },
+  {
+    id: '4',
+    question: 'Can Nexians help with mental wellness or anxiety?',
+    answer: 'While Nexians are not licensed therapists, they are designed to offer supportive, thoughtful conversation and encouragement. For serious mental health concerns, we recommend speaking with a licensed professional.',
+  },
+  {
+    id: '5',
+    question: 'Can I customize my Nexian’s personality?',
+    answer: 'Yes, you can personalize your Nexian’s tone, interests, and conversation style to better match your preferences and goals.',
+  },
+];
+
+
+export default function HomePage() {
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+    <div
+      className="
+        relative
+        bg-[url('/images/nexian-hp.png')] bg-no-repeat bg-cover bg-center
+        md:bg-cover md:bg-start
+        lg:bg-cover
+        
+      "
+      style={{
+        backgroundPosition: window.innerWidth >= 1024 ? "left 50% top 0%" : undefined
+      }}
+    >
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-black/70" />  
+    
+      <div className="relative isolate px-6 pt-14 lg:px-8">
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+        >
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+          <div className="hidden sm:mb-8 sm:flex sm:justify-center">
+            <div className="relative bg-indigo-600 rounded-full px-3 py-1 text-sm/6 text-white ring-1 ring-white/30 hover:ring-blue-900/20">
+              Announcing our next generation self help AI.  {''}  
+              <a href="#" className="font-semibold text-gray">
+                <span aria-hidden="true" className="absolute inset-0" />
+                Read more <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </div>
+          <div className="text-center">
+            <h1 className="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl">
+            Nexian Your guide to success.
+            </h1>
+            <p className="mt-8 text-lg font-medium text-pretty text-gray-200 sm:text-xl/8">
+              Nexians are your smart, empathetic AI companions—designed to inspire, guide, and keep you focused on what matters most. 
+              They help you break big dreams into achievable steps, celebrate every win, and learn from every challenge along the way.
+
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <a
+                href="#"
+                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Get started
+              </a>
+              <a href="#" className="text-sm/6 font-semibold text-white">
+                Learn more <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          
+        </div>
+      </div>
     </div>
-  );
+
+    <Stats stats={statsData}/>
+    <BentoGrid />
+    <Features />
+    <FaqSection faqs={faqs} />
+    </>
+  )
 }
