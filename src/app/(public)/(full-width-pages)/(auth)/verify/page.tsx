@@ -34,10 +34,8 @@ export default function VerifyPage() {
   }, [token]);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
     <div className="p-6 text-center">
       <h1 className="text-xl font-semibold">{status}</h1>
     </div>
-    </Suspense>
   );
 }
