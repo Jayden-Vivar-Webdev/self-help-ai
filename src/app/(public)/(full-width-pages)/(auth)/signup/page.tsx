@@ -1,9 +1,10 @@
-"use client"
+"use client";
+
 import { handleSignUp } from "@/app/(firebaseAuth)/firebaseSignUp"
 import { useEffect, useState } from "react"
 import { useRouter, useSearchParams } from 'next/navigation';
 
-
+export const dynamic = 'force-dynamic';
 
 export default function SignUp() {
     const [firstName, setFirstName] = useState("");
