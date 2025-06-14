@@ -3,7 +3,7 @@
 import { handleSignUp } from "@/app/(firebaseAuth)/firebaseSignUp"
 import { useEffect, useState } from "react"
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense } from 'react'
+
 export const dynamic = 'force-dynamic';
 export default function SignUp() {
     const [firstName, setFirstName] = useState("");
@@ -60,7 +60,7 @@ export default function SignUp() {
 
     return (
       <>
-        <Suspense fallback={<div>Loading...</div>}>
+
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
@@ -181,7 +181,6 @@ export default function SignUp() {
             </p>
           </div>
         </div>
-        </Suspense>
       </>
     )
   }
