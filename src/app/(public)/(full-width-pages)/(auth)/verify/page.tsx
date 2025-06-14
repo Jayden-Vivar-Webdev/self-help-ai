@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-
-export const dynamic = 'force-dynamic';
+import { Suspense } from 'react';
 
 export default function VerifyPage() {
   const searchParams = useSearchParams();
@@ -35,8 +34,10 @@ export default function VerifyPage() {
   }, [token]);
 
   return (
+    <Suspense>
     <div className="p-6 text-center">
       <h1 className="text-xl font-semibold">{status}</h1>
     </div>
+    </Suspense>
   );
 }
