@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Suspense } from 'react';
-
+export const dynamic = 'force-dynamic';
 export default function VerifyPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -34,7 +34,7 @@ export default function VerifyPage() {
   }, [token]);
 
   return (
-    <Suspense>
+    <Suspense fallback={<div>Loading...</div>}>
     <div className="p-6 text-center">
       <h1 className="text-xl font-semibold">{status}</h1>
     </div>
