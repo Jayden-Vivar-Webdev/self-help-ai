@@ -1,7 +1,7 @@
 "use client"
 import { handleSignUp } from "@/app/(firebaseAuth)/firebaseSignUp"
-import { useState } from "react"
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from "react"
+import { useRouter, useSearchParams } from 'next/navigation';
 
 
 
@@ -11,8 +11,35 @@ export default function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-
+    const [status, setStatus] = useState('Checking...');
+    const searchParams = useSearchParams();
+    const token = searchParams.get('verified');
     const router = useRouter();
+
+
+    useEffect(() => {
+      const verifyToken = async () => {
+        if (!token) {
+          setStatus('Missing token');
+          router.push('/emailAuth')
+          return;
+        }
+  
+        const res = await fetch(`/api/verify?token=${token}`);
+        const data = await res.json();
+  
+        if (res.ok) {
+          setStatus('Verified ✅ — You can now log in.');
+          // Optionally prefill their email or allow access
+        } else {
+          setStatus(`Verification failed: ${data.error}`);
+        }
+      };
+  
+      verifyToken();
+    }, [token]);
+
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -42,7 +69,7 @@ export default function SignUp() {
               className="mx-auto h-10 w-auto"
             />
             <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-              Sign in to your account
+            {status}
             </h2>
           </div>
   
