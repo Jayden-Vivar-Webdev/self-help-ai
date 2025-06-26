@@ -76,33 +76,7 @@ const tiers = [
     mostPopular: false,
   },
 ]
-const faqs = [
-  {
-    id: '1',
-    question: "What's the best thing about Switzerland?",
-    answer:
-      "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
-  },
-  {
-    id: '2',
-    question: "What's the best thing about Switzerland?",
-    answer:
-      "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
-  },
-  {
-    id: '3',
-    question: "What's the best thing about Switzerland?",
-    answer:
-      "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
-  },
-  {
-    id: '4',
-    question: "What's the best thing about Switzerland?",
-    answer:
-      "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
-  },
-  // More questions...
-]
+
 
 function classNames(...classes: (string | null | undefined)[]) {
   return classes.filter(Boolean).join(' ')
@@ -372,7 +346,7 @@ export default function Pricing() {
         </div>
 
         {/* FAQs */}
-        <FaqSection faqs={faqs} />
+        <FaqSection />
         <div className='pt-10'>
             {/* CTA section */}
             <CTASection />
