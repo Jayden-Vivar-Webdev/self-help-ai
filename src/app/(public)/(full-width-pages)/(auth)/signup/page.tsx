@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { useRouter, useSearchParams } from 'next/navigation';
 
 export const dynamic = 'force-dynamic';
+
 export default function SignUp() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -51,6 +52,7 @@ export default function SignUp() {
 
         try{
             await handleSignUp(email, password, firstName, lastName);
+            
             router.push("/dashboard");
             
         } catch(error) {

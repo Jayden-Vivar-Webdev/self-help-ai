@@ -1,10 +1,41 @@
+import React from 'react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+// You can choose a style you like from available themes
+import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+
+import dedent from 'dedent';
+
+const codeString = dedent(`
+  if (userRPE < 4) {
+    // User found workout too easy
+    increaseWorkoutIntensity();
+    displayMessage("Great! Let’s push a bit harder next time.");
+
+  } else if (userRPE >= 4 && userRPE <= 7) {
+    // User had a moderate workout
+    maintainCurrentPlan();
+    displayMessage("Awesome! Keep up the steady progress.");
+
+  } else if (userRPE > 7 && userRPE < 10) {
+    // User found workout challenging but manageable
+    suggestRecoveryTips();
+    displayMessage("Well done! Remember to rest and recover.");
+
+  } else if (userRPE >= 10) {
+    // User is too fatigued or injured
+    reduceWorkoutIntensity();
+    recommendMedicalConsult();
+    displayMessage("Take it easy and consult a professional if needed.");
+  }
+`);
+
 export default function BentoGrid() {
     return (
       <div className="bg-gray-50 py-24 sm:py-32">
         <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-          <h2 className="text-center text-base/7 font-semibold text-indigo-600">Increase Productivity</h2>
+          <h2 className="text-center text-base/7 font-semibold text-indigo-600">Increased Performance</h2>
           <p className="mx-auto mt-2 max-w-lg text-center text-4xl font-semibold tracking-tight text-balance text-gray-950 sm:text-5xl">
-            Everything you need to achieve your goals
+            Everything you need to achieve your health and fitness goals
           </p>
           <div className="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
             <div className="relative lg:row-span-2">
@@ -15,7 +46,7 @@ export default function BentoGrid() {
                     Mobile friendly
                   </p>
                   <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                    Optmised for mobile. Login review goals and talk to your Nexian for advice.
+                    Optmised for mobile. Login review your workouts and talk to your Nexian for advice.
                   </p>
                 </div>
                 <div className="@container relative min-h-120 w-full grow max-lg:mx-auto max-lg:max-w-sm">
@@ -36,7 +67,7 @@ export default function BentoGrid() {
                 <div className="px-8 pt-8 sm:px-10 sm:pt-10">
                   <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Performance</p>
                   <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                    Allow your Nexian to assist you in your greatest achievements.
+                    Nexia adapts and modifies your programs to ensure you are continuously improving
                   </p>
                 </div>
                 <div className="flex flex-1 items-center justify-center px-8 max-lg:pt-10 max-lg:pb-12 sm:px-10 lg:pb-2">
@@ -55,7 +86,7 @@ export default function BentoGrid() {
                 <div className="px-8 pt-8 sm:px-10 sm:pt-10">
                   <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">Advanced Technologies</p>
                   <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                    Your Nexian is a powerful intelligent personal self help specialist.
+                    Your Nexian is a powerful intelligent personal health and fitness specialist.
                   </p>
                 </div>
                 <div className="@container flex flex-1 items-center max-lg:py-6 lg:pb-2">
@@ -76,7 +107,7 @@ export default function BentoGrid() {
                     Powerful Results
                   </p>
                   <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                    Achieve your goals faster with your Nexian. Your Nexian will keep you accountable and progressive.
+                    The more you interact with Nexia the smarter it programs your nutritional and fitness programs.
                   </p>
                 </div>
                 <div className="relative min-h-120 w-full grow">
@@ -84,12 +115,19 @@ export default function BentoGrid() {
                     <div className="flex bg-gray-800/40 ring-1 ring-white/5">
                       <div className="-mb-px flex text-sm/6 font-medium text-gray-400">
                         <div className="border-r border-b border-r-white/10 border-b-white/20 bg-white/5 px-4 py-2 text-white">
-                          NotificationSetting.jsx
+                          Nexia-programing.jsx
                         </div>
                         <div className="border-r border-gray-600/10 px-4 py-2">App.jsx</div>
                       </div>
                     </div>
-                    <div className="px-6 pt-6 pb-14">{/* Your code example */}</div>
+                    <div className="px-6 pt-6 pb-14 text-white">
+                    <section>
+                    <SyntaxHighlighter language="javascript" style={oneDark} showLineNumbers>
+                      {codeString}
+                    </SyntaxHighlighter>
+                    </section>
+
+                    </div>
                   </div>
                 </div>
               </div>

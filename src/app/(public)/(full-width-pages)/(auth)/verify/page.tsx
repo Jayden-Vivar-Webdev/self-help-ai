@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Suspense } from 'react';
+
 export const dynamic = 'force-dynamic';
+
+
 export default function VerifyPage() {
   const searchParams = useSearchParams();
   const router = useRouter();

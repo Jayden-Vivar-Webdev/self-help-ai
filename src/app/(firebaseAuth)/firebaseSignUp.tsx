@@ -1,5 +1,5 @@
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import app from './firebaseConfig';
+import {app} from './firebaseConfig';
 
 const auth = getAuth(app);
 
@@ -16,6 +16,20 @@ export const handleSignUp = async (
     // Set the user's display name
     await updateProfile(user, {
       displayName: `${firstName} ${lastName}`
+    });
+
+    const userData = {
+      uid: user.uid,
+      name: user.displayName || '',
+      email: user.email,
+      photoURL: user.photoURL || '',
+      // You can add more default fields if you want
+    };
+
+    await fetch('/api/saveUser', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(userData)
     });
 
     console.log("User signed up:", user);

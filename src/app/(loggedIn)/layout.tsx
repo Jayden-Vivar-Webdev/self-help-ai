@@ -2,6 +2,9 @@
 import React, { useState, ReactNode, useEffect } from 'react';
 import { useAuth } from '../(firebaseAuth)/useAuthFB';
 import { useRouter } from "next/navigation";
+import { handleLogout } from '../(firebaseAuth)/firebaseLogout';
+import { usePathname } from 'next/navigation';
+
 
 import { 
   Home, 
@@ -11,7 +14,8 @@ import {
   Menu,
   X
 } from 'lucide-react';
-import DropDown from '../components/dropdown/dropdown';
+import NexiaLogo from '../components/nexia/logo';
+
 
 interface Components {
    children: ReactNode
@@ -19,8 +23,14 @@ interface Components {
 
 export default function Dashboard({children}: Components) {
   
+  const pathname = usePathname();
   const { user, loading } = useAuth();
   const router = useRouter();
+
+  const logoutUser = async () => {
+    await handleLogout()
+    router.push("/signin")
+  }
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -28,18 +38,18 @@ export default function Dashboard({children}: Components) {
     { icon: Home, label: 'Dashboard', href:'/dashboard', active: true },
     // { icon: Users, href:'/dashboard' , label: 'Team' },
     // { icon: FolderOpen, href:'/dashboard/progress', label: 'Progress' },
-    { icon: Calendar, href:'/dashboard/calendar', label: 'Calendar' },
-    { icon: FileText, href:'/dashboard/completed', label: 'Completed' },
+    { icon: Calendar, href:'/dashboard/nutrition', label: 'Nutrition' },
+    { icon: FileText, href:'/dashboard/completed', label: 'Metrics' },
     // { icon: BarChart3, href:'/dashboard/achieved', label: 'Achieved' },
     { icon: Settings, href:'/dashboard/achieved', label: 'Settings' },
 
   ];
 
-  const teams = [
-    { id: '🎯', name: 'Goal 1', color: 'bg-blue-500' },
-    { id: '📘', name: 'Goal 2', color: 'bg-cyan-500' },
-    { id: '💪', name: 'Goal 3', color: 'bg-purple-500' }
-  ];
+  // const teams = [
+  //   { id: '🎯', name: 'Goal 1', color: 'bg-blue-500' },
+  //   { id: '📘', name: 'Goal 2', color: 'bg-cyan-500' },
+  //   { id: '💪', name: 'Goal 3', color: 'bg-purple-500' }
+  // ];
 
   useEffect(()=> {
     if(!loading && !user) {
@@ -83,11 +93,11 @@ export default function Dashboard({children}: Components) {
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
-      <div className={`${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
-        <div className="flex items-center justify-between h-16 px-6 bg-gray-900">
+      <div className={`${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} fixed inset-y-0 left-0 z-50 w-64 shadow-[0_0_3px_0.5px_rgba(255,255,255,0.1)] bg-[#000000f2] border transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
+        <div className="flex items-center justify-between h-16 px-6 bg-black">
           <div className="flex items-center">
-            <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-              <img src="/images/logo.svg" alt="logo" />
+            <div className="w-50 h-8 rounded-lg flex items-center justify-center">
+              <NexiaLogo />
             </div>
           </div>
           <button
@@ -100,27 +110,29 @@ export default function Dashboard({children}: Components) {
 
         <nav className="px-4 py-6">
           <ul className="space-y-2">
-            {navigationItems.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <li key={index}>
-                  <a
-                    href={item.href}
-                    className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
-                      item.active
-                        ? 'bg-indigo-700 text-white'
-                        : 'text-indigo-100 hover:bg-indigo-700 hover:text-white'
-                    }`}
-                  >
-                    <Icon className="w-5 h-5 mr-3" />
-                    {item.label}
-                  </a>
-                </li>
-              );
-            })}
+          {navigationItems.map((item, index) => {
+            const Icon = item.icon;
+            const isActive = pathname === item.href;
+
+            return (
+              <li key={index}>
+                <a
+                  href={item.href}
+                  className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
+                    isActive
+                      ? 'bg-indigo-700 text-white'
+                      : 'text-indigo-100 hover:bg-indigo-700 hover:text-white'
+                  }`}
+                >
+                  <Icon className="w-5 h-5 mr-3" />
+                  {item.label}
+                </a>
+              </li>
+            );
+          })}
           </ul>
 
-          <div className="mt-8">
+          {/* <div className="mt-8">
             <h3 className="px-4 text-xs font-semibold text-indigo-300 uppercase tracking-wider">
               Goals
             </h3>
@@ -139,16 +151,16 @@ export default function Dashboard({children}: Components) {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
         </nav>
 
         <div className="absolute bottom-0 left-0 right-0 p-4">
           <a
-            href="#"
+            onClick={() => logoutUser()}
             className="flex items-center px-4 py-3 text-sm font-medium text-indigo-100 rounded-lg hover:bg-indigo-700 hover:text-white transition-colors"
           >
             <Settings className="w-5 h-5 mr-3" />
-            Settings
+            Logout
           </a>
         </div>
       </div>
@@ -164,7 +176,7 @@ export default function Dashboard({children}: Components) {
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="bg-gray-900 shadow-sm border-b border-gray-200">
+        <header className="bg-gray-900">
           <div className="flex items-center justify-between px-6 py-4">
             <div className="flex items-center">
               <button
@@ -187,9 +199,7 @@ export default function Dashboard({children}: Components) {
                 />
               </div> */}
             </div>
-            <h1 className="absolute left-1/2 transform -translate-x-1/2 text-white text-lg font-bold">
-              AI Agent
-            </h1>
+            
 
             <div className="flex items-center space-x-4">
               {/* <button className="text-gray-500 hover:text-gray-700">
@@ -198,18 +208,18 @@ export default function Dashboard({children}: Components) {
               
               <div className="flex items-center space-x-3">
                 <div className="w-8 h-8 rounded-full overflow-hidden">
-                  <img
+                  {/* <img
                     src="/images/logo.svg"
                     alt="Tom Cook"
                     className="w-full h-full object-cover"
-                  />
+                  /> */}
                   
                 </div>
                 
                 <div className="hidden md:block">
                   <div className="flex items-center space-x-1">
-                    <span className="text-sm font-medium text-white">Jayden</span>
-                    <DropDown />
+                    {/* <span className="text-sm font-medium text-white">Jayden</span> */}
+                    {/* <DropDown /> */}
 
                   </div>
                 </div>
@@ -219,9 +229,9 @@ export default function Dashboard({children}: Components) {
         </header>
 
         {/* Main content area */}
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50">
-          <div className="container mx-auto px-6 py-8">
-            <div className="rounded-lg shadow-sm border border-gray-200 min-h-96">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-black">
+          <div className="container mx-auto px-4 py-8">
+            <div className="min-h-96">
                   {children}
             </div>
           </div>
