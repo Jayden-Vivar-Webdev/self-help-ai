@@ -1,5 +1,51 @@
 // src/lib/voiceAgent.ts
-import { RealtimeAgent, RealtimeSession } from '@openai/agents-realtime';
+import { RealtimeAgent, RealtimeSession, tool } from '@openai/agents-realtime';
+import { z } from 'zod';
+import { getAuth } from 'firebase/auth';
+
+
+const updateWorkouts = tool({
+  name: 'update_workouts',
+  description: 'Update users workout plan based on preferences.',
+  parameters: z.object({
+    instructions: z.string(),
+  }),
+
+  async execute({ instructions }) {
+      try {
+        const auth = getAuth();
+        const user = auth.currentUser;
+
+        if(!user){
+          throw new Error('Could not find workout. User not authenticated.') 
+        }
+
+        const idToken = await user.getIdToken();
+        
+        if(!idToken){
+          throw new Error('Could not get workout. No token found for authentication.')
+        }
+
+        const res = await fetch('/api/updateWorkouts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${idToken}`
+          },
+          body: JSON.stringify({ instructions }) 
+          
+        });
+  
+        if (!res.ok) throw new Error('Failed to save');
+  
+        return `Saved ${instructions}`;
+      } catch (err) {
+        console.error(err);
+        return `Failed to save ${instructions}`;
+      }
+    }
+});
+
 
 const agent = new RealtimeAgent({
     name: 'Success Coach',
@@ -23,13 +69,16 @@ const agent = new RealtimeAgent({
 
     **Important**: All programs are for educational purposes. Always advise the user to consult with a healthcare professional before making major changes to their training or health routine.
 
+    If a user asks for **any change** to their workout — such as adjusting days, reps, sets, exercises, or adding new goals — you **must call the update_workouts tool** using the user’s request as the instructions parameter. 
+    Always use this tool to ensure their workout gets updated in the database.
+
     `.trim(),
     voice: 'shimmer',
-    
+    tools: [updateWorkouts]
   });
 
-  
-  
+
 export const session = new RealtimeSession(agent, {
   model: 'gpt-4o-realtime-preview-2025-06-03',
 });
+
