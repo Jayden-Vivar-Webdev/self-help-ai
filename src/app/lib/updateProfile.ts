@@ -128,6 +128,7 @@ const adminAgent = new RealtimeAgent({
         After **all** missing fields have been collected and saved, respond with:
 
         "Thank you for providing all your information! Here's a summary of your profile:
+        NOTE IF THE FIELDS ARE UNDEFINED DO NOT METION THEM BECAUSE THAT MEANS THEY WERE ALREADY SAVED TO THE DATABASE.
         - Age: [age]
         - Height: [height_cm] cm
         - Weight: [weight_kg] kg
