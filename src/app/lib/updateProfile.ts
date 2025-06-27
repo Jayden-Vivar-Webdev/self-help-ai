@@ -136,7 +136,7 @@ const adminAgent = new RealtimeAgent({
         - Equipment: [equipment]
         - Workouts per week: [workouts_per_week]
         - Injuries: [Injuries]
-        - Health Conditions: [Health Conditions] if the user says no save the word "None"
+        - Health Conditions: [Health Conditions] if the user says no save the word "None".
         - Meals Per Day: [Meals Per Day]
         - Intermittent Fasting: [Intermittent Fasting]
         - Allergies: [Alergies]
