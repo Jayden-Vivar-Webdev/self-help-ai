@@ -31,7 +31,9 @@ export default function VoiceAgent() {
     const vis = Visualiser(containerRef.current);
     if (vis) {
       visualiserRef.current = vis;
-  }});
+    }
+  }, []);
+  
 
   //fetch user workout data.
   const fetchUserWorkout = async () => {

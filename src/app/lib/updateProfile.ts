@@ -92,8 +92,6 @@ const generateWorkout = tool({
   }
 })
 
-
-
 const adminAgent = new RealtimeAgent({
     name: 'Administration assistant',
     instructions: `
