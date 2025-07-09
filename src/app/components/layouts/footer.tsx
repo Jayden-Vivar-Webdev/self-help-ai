@@ -103,11 +103,11 @@ export default function Footer(){
         <footer className="bg-gray-900">
         <div className="mx-auto max-w-7xl px-6 pt-16 pb-8 sm:pt-24 lg:px-8 lg:pt-32">
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-            <div className="space-y-8">
+            <div className="space-y-2">
               <img
-                alt="Company name"
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                className="h-9"
+                alt="Nexian - Powered by Nexa Web Development"
+                src="/images/logo.png"
+                className="h-30 filter invert"
               />
               <p className="text-sm/6 text-balance text-gray-400">
                 Making the world a better place through constructing elegant hierarchies.
@@ -177,7 +177,7 @@ export default function Footer(){
             </div>
           </div>
           <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
-            <p className="text-sm/6 text-gray-400">&copy; 2024 Your Company, Inc. All rights reserved.</p>
+            <p className="text-sm/6 text-gray-400">&copy; 2024 Your Nexian, Inc. All rights reserved.</p>
           </div>
         </div>
       </footer>

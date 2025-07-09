@@ -149,10 +149,10 @@ export default function LoginPage() {
             <div className="text-center text-white p-8">
               <div className="mb-8">
                 <div className="w-64 h-48 mx-auto bg-opacity-10 rounded-lg backdrop-blur-sm flex items-center justify-center">
-                  <img src="/images/logo.svg" alt="Nexia Logo" />
+                  <img className="filter invert" src="/images/logo.png" alt="Nexia Logo" />
                 </div>
               </div>
-              <h3 className="text-2xl font-bold mb-4">Welcome To Nexia</h3>
+              <h3 className="text-2xl font-bold mb-4">Welcome To Nexia - Powered By Nexa Web</h3>
               <p className="text-lg opacity-90">
                 Sign in to access your personalised dashboard and continue your journey with your Nexian.
               </p>

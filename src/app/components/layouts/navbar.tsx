@@ -35,11 +35,11 @@ export default function Navbar() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center">
-                <div className="shrink-0">
+              <div className='flex w-[6rem] max-h-[3rem] overflow-hidden justify-center items-center'>
                   <img
-                    alt="Your Company"
-                    src="/images/logo.svg"
-                    className="size-10"
+                    alt="Nexian - Powered by Nexa Web"
+                    src="/images/logo.png"
+                    className="w-full h-full object-cover object-center filter invert"
                   />
                 </div>
                 <div className="hidden md:block">
@@ -69,7 +69,7 @@ export default function Navbar() {
                 <div className="flex justify-center items-center px-1">
                   <button
                     type="button"
-                    className="w-full rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-500 focus:bg-blue"
+                    className="w-full rounded-md primary-color px-4 py-2 text-sm font-medium text-white hover:bg-yellow-500 focus:bg-blue"
                   >
                     Sign Up
                   </button>

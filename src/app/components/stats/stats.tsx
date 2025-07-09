@@ -2,6 +2,7 @@ interface Stats {
   id: string;
   name: string;
   value: string;
+  unit: string;
 };
   
 interface StatsProps{
@@ -10,20 +11,24 @@ interface StatsProps{
 
   export default function Stats({stats}: StatsProps) {
     return (
-      <div className="bg-[#5039f6] py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
+      <div className="">
+        <div className="mx-auto bg-black">
+          <div className="grid grid-cols-1 gap-[1px] py-[1px] bg-yellow-400/50 sm:grid-cols-2 lg:grid-cols-3">
             {stats.map((stat) => (
-              <div key={stat.id} className="mx-auto flex max-w-xs flex-col gap-y-4">
-                <dt className="text-base/7 text-white">{stat.name}</dt>
-                <dd className="order-first text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-                  {stat.value}
-                </dd>
+              <div key={stat.name} className="bg-gray-900 px-4 py-6 sm:px-8 lg:px-10">
+                <p className="text-sm/6 font-medium text-gray-200">{stat.name}</p>
+                <p className="mt-2 flex items-baseline gap-x-2">
+                  <span className="text-4xl font-semibold tracking-tight text-[#f0b000]">{stat.value}</span>
+                  {stat.unit ? <span className="text-sm text-gray-200">{stat.unit}</span> : null}
+                </p>
               </div>
             ))}
-          </dl>
+          </div>
         </div>
       </div>
     )
   }
+
+
+  
   

@@ -15,7 +15,10 @@ export default function features() {
         </div>
         <div className="px-6 lg:contents">
           <div className="mx-auto max-w-2xl pt-16 pb-24 sm:pt-20 sm:pb-32 lg:mr-0 lg:ml-8 lg:w-full lg:max-w-lg lg:flex-none lg:pt-32 xl:w-1/2">
-            <p className="text-base/7 font-semibold text-indigo-600">Train Smart</p>
+            <div className='primary-bg px-10 inline-flex rounded-xl py-1'>
+              <p className="text-base/7 font-semibold text-white">Train Smart</p>
+            </div>
+            
             <h1 className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
               An Optimised Personal Solution
             </h1>
@@ -39,19 +42,19 @@ export default function features() {
               </p>
               <ul role="list" className="mt-8 space-y-8 text-gray-600">
               <li className="flex gap-x-3">
-                <CloudArrowUpIcon aria-hidden="true" className="mt-1 size-5 flex-none text-indigo-600" />
+                <CloudArrowUpIcon aria-hidden="true" className="mt-1 size-5 flex-none primary-text" />
                 <span>
                     <strong className="font-semibold text-gray-900">Smart workout generation.</strong> Instantly generate personalized training plans based on your goals, experience, and available equipment—no guesswork needed.
                 </span>
                 </li>
                 <li className="flex gap-x-3">
-                <LockClosedIcon aria-hidden="true" className="mt-1 size-5 flex-none text-indigo-600" />
+                <LockClosedIcon aria-hidden="true" className="mt-1 size-5 flex-none primary-text" />
                 <span>
                     <strong className="font-semibold text-gray-900">Private & secure data.</strong> Your fitness profile, history, and health data are encrypted and never shared—your progress stays private.
                 </span>
                 </li>
                 <li className="flex gap-x-3">
-                <ServerIcon aria-hidden="true" className="mt-1 size-5 flex-none text-indigo-600" />
+                <ServerIcon aria-hidden="true" className="mt-1 size-5 flex-none primary-text" />
                 <span>
                     <strong className="font-semibold text-gray-900">Auto progress tracking.</strong> Every session is logged automatically, allowing you to review progress, adjust intensity, and celebrate milestones.
                 </span>
