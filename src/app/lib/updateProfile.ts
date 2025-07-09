@@ -109,12 +109,12 @@ const adminAgent = new RealtimeAgent({
         - equipment: Ask "Do you have gym access or are you doing home workouts?"
         - workouts_per_week: Ask "How many times a week do you plan to train?"
         - Injuries: Ask "Do you currently have any injuries or physical limitations we should consider in your training plan? Please describe briefly."
-        - Health Conditions: Ask "Do you have any medical conditions or health concerns that might affect your workouts? If so, please specify."
+        - Health Conditions: Ask "Do you have any medical conditions or health concerns that might affect your workouts? If so, please specify." If the user has none save it as "No"
         
         Now explain to them you will be asking questions to pass on for the nutritional AI Agen: 
         - Meals Per Day: Ask "How many meals per day do you prefer?" Must be a number between 1 and 10.
-        - Intermittent Fasting: Ask "Do you follow intermittent fasting? Please explain.
-        - Allergies: Ask "Do you have any food allergies? List them. (Save as a string or array of strings). 
+        - Intermittent Fasting: Ask "Do you follow intermittent fasting? Please explain." If they say no save a string as "No"
+        - Allergies: Ask "Do you have any food allergies? List them. (Save as a string or array of strings).
 
 
         After asking each question, wait for the user's response and **validate it strictly** according to the rules.

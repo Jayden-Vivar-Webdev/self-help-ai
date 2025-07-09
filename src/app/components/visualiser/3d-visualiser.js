@@ -25,7 +25,7 @@ export function Visualiser(container) {
 
   const outerGeometry = generateParticleSphere(numPoints, outerRadius);
   const outerMaterial = new THREE.PointsMaterial({
-    color: 0x155dfc,
+    color: 0xfcce03,
     size: 5,
     transparent: true,
     blending: THREE.AdditiveBlending,
@@ -40,7 +40,7 @@ export function Visualiser(container) {
   outerBasePositions.set(outerPositions);
 
   const innerGeometry = generateParticleSphere(numPoints, innerRadius);
-  const innerMaterial = new THREE.PointsMaterial({ color: 0x9d00ff, size: 2 });
+  const innerMaterial = new THREE.PointsMaterial({ color: 0xfcbb03, size: 2 });
   const innerPoints = new THREE.Points(innerGeometry, innerMaterial);
   scene.add(innerPoints);
 
@@ -72,8 +72,8 @@ export function Visualiser(container) {
       avg = sum / dataArray.length;
     }
   
-    const outerScale = 1 + avg / 300;
-    const innerScale = 1 + avg / 330;
+    const outerScale = 1 + avg / 200;
+    const innerScale = 1 + avg / 100;
   
     for (let i = 0; i < outerPositions.length; i += 3) {
       const baseX = outerBasePositions[i];

@@ -94,7 +94,7 @@ export default function Dashboard({children}: Components) {
     <div className="flex h-screen">
       {/* Sidebar */}
       <div className={`${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} fixed inset-y-0 left-0 z-50 w-64 shadow-[0_0_3px_0.5px_rgba(255,255,255,0.1)] bg-[#000000f2] border transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
-        <div className="flex items-center justify-between h-16 px-6 bg-black">
+        <div className="flex items-center justify-between h-16 px-6 bg-gray-900">
           <div className="flex items-center">
             <div className="w-50 h-8 rounded-lg flex items-center justify-center">
               <NexiaLogo />
@@ -120,8 +120,8 @@ export default function Dashboard({children}: Components) {
                   href={item.href}
                   className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
                     isActive
-                      ? 'bg-indigo-700 text-white'
-                      : 'text-indigo-100 hover:bg-indigo-700 hover:text-white'
+                      ? 'primary-bg text-white'
+                      : 'text-gray-100 hover:bg-yellow-500/50 hover:text-white'
                   }`}
                 >
                   <Icon className="w-5 h-5 mr-3" />

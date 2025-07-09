@@ -3,7 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary-color: #f0b100
+  --primary-color: #240 177 0
 }
 
 @theme inline {
@@ -25,9 +25,14 @@
   .primary-bg {
     background-color: #f0b100;
   }
+  .primary-bg-100 { background-color: rgba(240, 177, 0, 1); }
+  .primary-bg-50  { background-color: rgba(240, 177, 0, 0.5); }
+  .primary-bg-10  { background-color: rgba(240, 177, 0, 0.1); }
+
   .primary-text {
     color: var(--primary-color)
   }
+
 
 }
 
