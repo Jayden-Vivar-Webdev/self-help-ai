@@ -1,5 +1,4 @@
 'use client';
-
 import { useEffect, useRef, useState } from 'react';
 import WorkoutPlanDisplay from '@/app/components/workouts/viewWorkouts'
 import { Visualiser } from '@/app/components/visualiser/3d-visualiser';

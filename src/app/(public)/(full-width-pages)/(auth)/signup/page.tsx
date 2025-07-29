@@ -1,4 +1,4 @@
-'use client';
+
 
 import React, { Suspense } from 'react';
 import SignUpContent from '@/app/lib/helpers/signupcontext/SignUpContext';
