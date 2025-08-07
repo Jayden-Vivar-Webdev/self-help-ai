@@ -7,6 +7,8 @@ export async function POST(req: Request) {
 
     const updatedWorkout = await req.json();
     
+    console.log(updatedWorkout);
+
     if(!updatedWorkout) {
         return new Response(JSON.stringify({error: 'Issue catching workout'}), {status: 404});
     }

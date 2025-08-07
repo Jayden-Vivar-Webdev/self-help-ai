@@ -35,7 +35,7 @@ export default function Dashboard({children}: Components) {
   const navigationItems = [
     { icon: Home, label: 'Dashboard', href:'/dashboard', active: true },
     // { icon: Calendar, href:'/dashboard/nutrition', label: 'Nutrition' },
-    { icon: FileText, href:'/dashboard/completed', label: 'Metrics' },
+    { icon: FileText, href:'/dashboard/completed', label: 'History' },
     { icon: Settings, href:'/dashboard/achieved', label: 'Settings' },
   ];
 

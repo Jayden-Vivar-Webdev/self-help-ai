@@ -4,7 +4,7 @@ import WorkoutPlanDisplay from '@/app/components/workouts/viewWorkouts'
 import { Visualiser } from '@/app/components/visualiser/3d-visualiser';
 import { retrieveWorkout } from '@/app/lib/helpers/frontend/requestWorkouts';
 import { startTalking, stopTalking } from '@/app/lib/helpers/frontend/aiSessionStart';
-import {WorkoutHistory} from '@/app/lib/types/workouts/workoutHistory'
+import {WorkoutWeek} from '@/app/lib/types/workouts/workoutHistory'
 import { FiMic, FiMicOff, FiUser, FiActivity, FiZap } from 'react-icons/fi'
 
 //Visualiser parameters
@@ -20,7 +20,7 @@ export default function VoiceAgent() {
   const [retrieveableWorkouts, setRetrieveableWorkouts] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const visualiserRef = useRef<VisualiserType | null>(null);
-  const [workouts, setWorkout] = useState<WorkoutHistory | null>();
+  const [workouts, setWorkout] = useState<WorkoutWeek | null>();
   const orbRef = useRef<HTMLDivElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
   const [isTalking, setIsTalking] = useState(false);
@@ -231,6 +231,7 @@ export default function VoiceAgent() {
       {/* Workout Plan Section */}
       <section className="pb-16">
         {workouts ? (
+          
           <WorkoutPlanDisplay workoutData={workouts} />
         ) : (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

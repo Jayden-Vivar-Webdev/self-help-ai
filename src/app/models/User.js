@@ -14,9 +14,6 @@ const UserSchema = new mongoose.Schema({
   workouts_per_week: Number,
   injuries: [String],
   healthConditions: [String],
-  intermittentFasting: String,
-  mealsPerDay: Number,          
-  allergies: [String],
   createdAt: { type: Date, default: Date.now },
 });
 

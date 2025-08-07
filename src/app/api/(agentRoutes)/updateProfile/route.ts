@@ -14,10 +14,12 @@ export async function POST(request: NextRequest) {
    }
   
   const {field, value } = await request.json();
+  // Convert first letter of the field to lowercase
+  const formattedField = field.charAt(0).toLowerCase() + field.slice(1);
 
   try {
     await dbConnect();
-    await User.updateOne({ uid }, { $set: { [field]: value } });
+    await User.updateOne({ uid }, { $set: { [formattedField]: value } });
 
     return Response.json({ success: true });
   } catch (error) {

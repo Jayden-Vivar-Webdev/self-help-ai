@@ -33,9 +33,7 @@ export async function POST(request: NextRequest) {
      //Fields to check prior to creating programs
      const requiredFields = [
       'age', 'height_cm', 'weight_kg', 'goal',
-      'experience_level', 'equipment', 'workouts_per_week', 'injuries', 'healthConditions', 'mealsPerDay',
-      'intermittentFasting', 'allergies'
-    ];
+      'experience_level', 'equipment', 'workouts_per_week', 'injuries', 'healthConditions']
 
     //Check user, keys are strings or unknown/null
     const userObj = user as Record<string, unknown>;

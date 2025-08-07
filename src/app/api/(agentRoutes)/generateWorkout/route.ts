@@ -26,7 +26,8 @@ export async function POST(request: NextRequest) {
     const prompt = `
       You are a fitness coach AI. Create a weekly workout plan in JSON format matching this structure:
 
-      {
+      { 
+        "userId": ${uid},
         "week": 1,
         "completedSessions": 0,
         "weekSubmitted": false,
@@ -93,6 +94,7 @@ export async function POST(request: NextRequest) {
       }
 
       workoutPlan = JSON.parse(cleanText);
+      console.log(workoutPlan)
 
     } catch (e) {
       console.error('Failed to parse AI response:', e);
@@ -121,8 +123,7 @@ export async function POST(request: NextRequest) {
     } else {
       // No existing history – create new one
       const newWorkout = await WorkoutHistory.create({
-        userId: uid,
-        weeks: [workoutPlan],
+        ...workoutPlan,
       });
 
       return new Response(JSON.stringify(newWorkout), {

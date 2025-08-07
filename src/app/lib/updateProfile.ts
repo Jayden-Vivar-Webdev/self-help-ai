@@ -110,12 +110,6 @@ const adminAgent = new RealtimeAgent({
         - workouts_per_week: Ask "How many times a week do you plan to train?"
         - Injuries: Ask "Do you currently have any injuries or physical limitations we should consider in your training plan? Please describe briefly."
         - Health Conditions: Ask "Do you have any medical conditions or health concerns that might affect your workouts? If so, please specify." If the user has none save it as "No"
-        
-        Now explain to them you will be asking questions to pass on for the nutritional AI Agen: 
-        - Meals Per Day: Ask "How many meals per day do you prefer?" Must be a number between 1 and 10.
-        - Intermittent Fasting: Ask "Do you follow intermittent fasting? Please explain." If they say no save a string as "No"
-        - Allergies: Ask "Do you have any food allergies? List them. (Save as a string or array of strings).
-
 
         After asking each question, wait for the user's response and **validate it strictly** according to the rules.
 
@@ -134,11 +128,8 @@ const adminAgent = new RealtimeAgent({
         - Experience Level: [experience_level]
         - Equipment: [equipment]
         - Workouts per week: [workouts_per_week]
-        - Injuries: [Injuries]
+        - Injuries: [Injuries] if the user says no save the word "None".
         - Health Conditions: [Health Conditions] if the user says no save the word "None".
-        - Meals Per Day: [Meals Per Day]
-        - Intermittent Fasting: [Intermittent Fasting]
-        - Allergies: [Alergies]
 
         Please note that all workout programs provided are for guidance only. We do not accept any responsibility for injuries or issues that may arise from following these programs.
 

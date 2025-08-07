@@ -7,13 +7,14 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
 
     try{
+
          //Get authentication from current user from firebase func
         const uid = await verifyUserUid(request)
 
         if(!uid){
             return NextResponse.json({ error: 'Unauthorized: No valid UID' }, { status: 401 })
         }
-        
+
         await dbConnect()
         
         //return the active week, on the front end if active week is more 2 start displaying previous weeks.  
@@ -23,8 +24,27 @@ export async function POST(request: NextRequest) {
             return new Response(JSON.stringify({ error: "User not found" }), { status: 404 });
         }
 
-        //Get the lastest workout based on ID and name might use for date based look up. 
-        const workouts = await WorkoutHistory.findOne({ userId: user.uid }).sort({_id: -1}).exec();
+
+        // Parse request body for month and year
+        const { month, year } = await request.json();
+
+        // Validate input
+        if (
+            typeof month !== 'number' || month < 1 || month > 12 ||
+            typeof year !== 'number' || year < 2000 || year > 2100
+        ) {
+            return new Response(JSON.stringify({ error: 'Invalid month or year' }), { status: 400 });
+        }
+
+        const startDate = new Date(year, month - 1, 1); // e.g. March 2025 => new Date(2025, 2, 1)
+        const endDate = new Date(year, month, 1); 
+
+        // Fetch workouts within the month
+        const workouts = await WorkoutHistory.find({
+            userId: user.uid,
+            createdAt: { $gte: startDate, $lt: endDate }
+        }).sort({ createdAt: -1 }).exec();
+    
         return new Response(JSON.stringify(workouts), {
             status: 200,
             headers: { 'Content-Type': 'application/json' },

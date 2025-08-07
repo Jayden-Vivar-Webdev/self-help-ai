@@ -21,18 +21,12 @@ export async function POST(request: NextRequest) {
     await dbConnect();
 
     // Find existing workout history
-    const existingHistory = await WorkoutHistory.findOne({ userId: uid });
+    const existingHistory = await WorkoutHistory.findOne({ userId: user.uid }).sort({_id: -1}).exec();
 
-    // Prepare previous week data for prompt if exists
-    let lastWeekJSON = '';
-    let nextWeekNumber = 1;
-
-    if (existingHistory && existingHistory.weeks.length > 0) {
-      // Get last week
-      const lastWeek = existingHistory.weeks[existingHistory.weeks.length - 1];
-      lastWeekJSON = JSON.stringify(lastWeek, null, 2);
-      nextWeekNumber = lastWeek.week + 1;
-    }
+    // Prepare last week and next week number
+    const lastWeekJSON = JSON.stringify(existingHistory);
+    const nextWeekNumber = existingHistory.week + 1
+    
 
     // Construct AI prompt with user info and previous week if available
     const prompt = `
@@ -52,6 +46,7 @@ export async function POST(request: NextRequest) {
       The new workout plan must follow this JSON structure:
 
       {
+        "userId": ${uid},
         "week": ${nextWeekNumber},
         "completedSessions": 0,
         "weekSubmitted": false,
@@ -131,25 +126,15 @@ export async function POST(request: NextRequest) {
 
     if (existingHistory) {
       // Add new week to existing weeks
-      existingHistory.weeks.push(workoutPlan);
-      await existingHistory.save();
-
-      return new Response(JSON.stringify(existingHistory), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    } else {
-      // No existing history - create new workout history doc
       const newWorkout = await WorkoutHistory.create({
-        userId: uid,
-        weeks: [workoutPlan],
+        ...workoutPlan,
       });
 
       return new Response(JSON.stringify(newWorkout), {
         status: 200,
         headers: { 'Content-Type': 'application/json' },
       });
-    }
+    } 
   } catch (error) {
     console.error(error);
     return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500 });

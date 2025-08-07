@@ -21,7 +21,6 @@ export async function POST(request: NextRequest) {
 
     //Get both the new prompt and previous workout to change requests
     const {instructions} = await request.json();
-    console.log(typeof(instructions))
 
     const prevWorkout = await WorkoutHistory.findOne({userId: uid})
 

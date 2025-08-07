@@ -1,35 +1,37 @@
-export type Exercise = {
+  
+  export type Exercise = {
+    _id: string;
     name: string;
-    sets: number;
-    reps: number | string;
+    sets: number | null;
+    reps: number | null;
     weight: number | null;
     otherWorkouts: string | null;
     RPE: number | null;
-  };
+  }
   
   export type Session = {
+    _id: string;
     day: string;
     name: string;
-    completed: boolean;
     exercises: Exercise[];
-  };
+    completed: boolean;
+  }
   
   export type Feedback = {
+    _id: string;
     difficulty: string;
     injuries: string[];
     notes: string;
-  };
+  }
   
-  export type Week = {
+  export type WorkoutWeek = {
+    _id: string;
+    userId: string;
     week: number;
     completedSessions: number;
     weekSubmitted: boolean;
     feedback: Feedback;
     sessions: Session[];
-  };
-  
-  export type WorkoutHistory = {
-    userId: string;
-    weeks: Week[];
-  };
-  
+    createdAt: string;
+    __v: number;
+  }
